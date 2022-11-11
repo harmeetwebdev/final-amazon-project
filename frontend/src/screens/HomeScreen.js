@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from "react";
 import { Link } from "react-router-dom"
 // import data from "../data"
 import axios from 'axios'
-import logger from "use-reducer-logger"
+
 const reducer = (state, action) => {
     switch (action.type) {
         case 'FETCH_REQUEST':
@@ -17,7 +17,7 @@ const reducer = (state, action) => {
 }
 
 function HomeScreen() {
-    const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
+    const [{ loading, error, products }, dispatch] = useReducer(reducer, {
         products: [],
         loading: true,
         error: '',
@@ -41,11 +41,7 @@ function HomeScreen() {
     return <div>
         <h1>Featured product</h1>
         <div className='products'>
-            {loading ? (
-                <div>Loading...</div>
-            ) : error ? (
-                <div>{error}</div>
-            ) : (
+            {
                 products.map(product => (
                     < div className='product' key={product.slug}>
                         <Link to={`/product/${product.slug}`}>
@@ -55,11 +51,11 @@ function HomeScreen() {
                             <Link to={`/product/${product.slug}`}>
                                 <p>{product.name}</p>
                             </Link>
-                            <p><strong>${product.price}</strong></p>
+                            <p className="text-primary"><strong>${product.price}</strong></p>
                             <button>Add to Cart</button>
                         </div>
                     </div>
-                )))}
+                ))}
         </div>
     </div>
 }
