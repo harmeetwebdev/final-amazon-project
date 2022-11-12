@@ -22,10 +22,17 @@ header a {
 main {
   flex: 1;
 }
+.Btn-primar {
+  background-color: #f0c040;
+  color: black;
+}
 .products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+.rating span {
+  color: #ffc000;
 }
 .product {
   border: 1px #404040 solid;
