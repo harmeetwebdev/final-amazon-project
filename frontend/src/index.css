@@ -22,7 +22,7 @@ header a {
 main {
   flex: 1;
 }
-.Btn-primar {
+.Btn-warning {
   background-color: #f0c040;
   color: black;
 }
@@ -44,4 +44,7 @@ main {
 }
 .product-info {
   padding: 1rem;
+}
+.img-large {
+  max-width: 100%;
 }
