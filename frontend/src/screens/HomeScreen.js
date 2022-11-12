@@ -4,7 +4,8 @@ import axios from 'axios'
 import { Col, Row } from "react-bootstrap";
 import Product from '../components/Product';
 import { Helmet } from 'react-helmet-async'
-
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox ";
 const reducer = (state, action) => {
     switch (action.type) {
         case 'FETCH_REQUEST':
@@ -19,7 +20,7 @@ const reducer = (state, action) => {
 }
 
 function HomeScreen() {
-    const [{ products }, dispatch] = useReducer(reducer, {
+    const [{ loading, error, products }, dispatch] = useReducer(reducer, {
         products: [],
         loading: true,
         error: '',
@@ -40,22 +41,28 @@ function HomeScreen() {
         fetchData();
     }, []);
 
-    return <div>
-    <Helmet>
-        <title>Amazone</title>
-    </Helmet>
-        <h1>Featured product</h1>
-        <div className='products'>
-
-            <Row>
-                {products.map(product => (
-                    <Col key={product.slug} sm={6} md={4} lg={3} className='mb-3'>
-                        <Product product={product}></Product>
-                    </Col>
-                ))}
-            </Row>
-
+    return (
+        <div>
+            <Helmet>
+                <title>Amazona</title>
+            </Helmet>
+            <h1>Featured Products</h1>
+            <div className="products">
+                {loading ? (
+                    <LoadingBox />
+                ) : error ? (
+                    <MessageBox variant="danger">{error}</MessageBox>
+                ) : (
+                    <Row>
+                        {products.map((product) => (
+                            <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+                                <Product product={product}></Product>
+                            </Col>
+                        ))}
+                    </Row>
+                )}
+            </div>
         </div>
-    </div>
+    )
 }
 export default HomeScreen
