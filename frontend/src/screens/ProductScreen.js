@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useReducer } from "react";
 import { Col, ListGroup, Row, Card, Badge, Button } from "react-bootstrap";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Rating from "../components/Rating";
 import { Helmet } from 'react-helmet-async'
 import LoadingBox from "../components/LoadingBox";
@@ -24,6 +24,7 @@ const reducer = (state, action) => {
 }
 
 function ProductScreen() {
+    const navigate = useNavigate()
     const params = useParams();
     const { slug } = params;
     const [{ loading, error, product }, dispatch] = useReducer(reducer, {
@@ -60,6 +61,7 @@ function ProductScreen() {
             type: 'CART_ADD_ITEM',
             payload: { ...product, quantity }
         })
+        navigate('/cart')
     }
 
     return loading ? (
@@ -120,7 +122,9 @@ function ProductScreen() {
                                 {product.countInStock > 0 && (
                                     <ListGroup.Item>
                                         <div className="d-grid">
-                                            <Button onClick={addToCartHandler} variant="outline-warning">
+                                            <Button
+                                                onClick={addToCartHandler}
+                                                variant="outline-warning">
                                                 Add to Cart
                                             </Button>
                                         </div>
