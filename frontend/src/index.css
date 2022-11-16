@@ -22,7 +22,7 @@ header a {
 main {
   flex: 1;
 }
-.Btn-warning {
+.Btn-Warning {
   background-color: #f0c040;
   color: black;
 }
@@ -52,6 +52,6 @@ main {
   height: 80px;
   width: 80px;
 }
-/* .button-check {
-  width: 100%;
-} */
+.small-container {
+  max-width: 600px;
+}
