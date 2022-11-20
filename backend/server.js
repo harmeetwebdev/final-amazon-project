@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/seed', seedRouter);
 app.use('/api/products', productRouter)
-app.use('/api/user', userRouter)
+app.use('/api/users', userRouter)
 
 app.use((err, req, res, next) => {
     res.status(500).send({ message: err.message });
