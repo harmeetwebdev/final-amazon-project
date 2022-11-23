@@ -10,13 +10,15 @@ import { useContext } from 'react';
 import { Store } from './Store';
 import CartScreen from './screens/CartScreen';
 import SigninScreen from './screens/SigninScreen';
+import ShippingAddressScreen from './screens/ShippingAddressScreen';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
   const signoutHandler = () => {
-    ctxDispatch({ type: "USER_SIGNOUT" })
+    ctxDispatch({ type: "USER_SIGNOUt" })
     localStorage.removeItem('userInfo')
+    localStorage.removeItem('shippingAddress')
   }
   return (
     <BrowserRouter>
@@ -48,7 +50,7 @@ function App() {
                     <NavDropdown.Divider />
                     <Link
                       className='dropdown-item'
-                      to="#signout"
+                      to="/signin"
                       onClick={signoutHandler}>
                       Sign Out</Link>
                   </NavDropdown>
@@ -69,6 +71,7 @@ function App() {
               <Route path='/product/:slug' element={<ProductScreen />} />
               <Route path='/cart' element={<CartScreen />} />
               <Route path='/signin' element={<SigninScreen />} />
+              <Route path='/shipping' element={<ShippingAddressScreen />} />
               <Route path='/' element={<HomeScreen />} />
             </Routes>
           </Container>
