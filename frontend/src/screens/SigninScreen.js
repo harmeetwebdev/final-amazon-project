@@ -1,6 +1,8 @@
 import Axios from 'axios'
 import { useContext, useEffect, useState } from 'react';
-import { Button, Container, Form, Toast } from "react-bootstrap";
+import { Button, Container, Form, } from "react-bootstrap";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 import { Helmet } from "react-helmet-async";
 import { Store } from '../Store';
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -27,7 +29,7 @@ export default function SigninScreen() {
             localStorage.setItem('userInfo', JSON.stringify(data))
             navigate(redirect || '/')
         } catch (err) {
-            Toast.error('Invalid email and password')
+            toast.error('Invalid email and password')
         }
     };
     useEffect(() => {
@@ -59,6 +61,7 @@ export default function SigninScreen() {
                     <Link to={`/signup?redirect=${redirect}`}>Create Your Account</Link>
                 </div>
             </Form>
+
         </Container>
     )
 }

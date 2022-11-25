@@ -3,7 +3,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import 'react-toastify/dist/ReactToastify.css';
-import { Badge, Container, Nav, Navbar, NavDropdown, ToastContainer } from 'react-bootstrap';
+import { ToastContainer } from 'react-toastify';
+
+import { Badge, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
@@ -11,6 +13,7 @@ import { Store } from './Store';
 import CartScreen from './screens/CartScreen';
 import SigninScreen from './screens/SigninScreen';
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
+import SignupScreen from './screens/SignupScreen';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -71,7 +74,10 @@ function App() {
               <Route path='/product/:slug' element={<ProductScreen />} />
               <Route path='/cart' element={<CartScreen />} />
               <Route path='/signin' element={<SigninScreen />} />
-              <Route path='/shipping' element={<ShippingAddressScreen />} />
+              <Route path='/signup' element={<SignupScreen />} />
+              <Route path='/shipping'
+                element={<ShippingAddressScreen />}
+              ></Route>
               <Route path='/' element={<HomeScreen />} />
             </Routes>
           </Container>
