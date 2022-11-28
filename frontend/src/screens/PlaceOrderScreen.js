@@ -23,7 +23,7 @@ const reducer = (state, action) => {
 };
 
 export default function PlaceOrderScreen() {
-    const [{ loading, error }, dispatch] = useReducer(reducer, {
+    const [{ loading }, dispatch] = useReducer(reducer, {
         loading: false,
         error: ''
     })
